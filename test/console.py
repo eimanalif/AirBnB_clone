@@ -1,10 +1,13 @@
 #!/usr/bin/python3
-"""Defines the HBnB console."""
+"""Defines HBnB console."""
 import cmd
 import re
-from shlex import split
-from models import storage
+import sys
+import models
+import shlex
 from models.base_model import BaseModel
+from shlex import split
+from models.engine import file_storage
 from models.user import User
 from models.state import State
 from models.city import City
@@ -50,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def emptyline(self):
-        """Do nothing upon receiving an empty line."""
+        """Do nothing upon receiving empty line."""
         pass
 
     def default(self, arg):
@@ -58,9 +61,9 @@ class HBNBCommand(cmd.Cmd):
         argdict = {
             "all": self.do_all,
             "show": self.do_show,
-            "destroy": self.do_destroy,
             "count": self.do_count,
-            "update": self.do_update
+            "update": self.do_update,
+            "destroy": self.do_destroy
         }
         match = re.search(r"\.", arg)
         if match is not None:
@@ -98,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Usage: show <class> <id> or <class>.show(<id>)
-        Display the string representation of a class instance of a given id.
+        Display string representation of class instance of given id.
         """
         argl = parse(arg)
         objdict = storage.all()
@@ -148,7 +151,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_count(self, arg):
         """Usage: count <class> or <class>.count()
-        Retrieve number of instances of a given class."""
+        Retrieve the number of instances of a given class."""
         argl = parse(arg)
         count = 0
         for obj in storage.all().values():
@@ -208,4 +211,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
-
