@@ -31,11 +31,9 @@ def parse(arg):
         return rtl
 
 
-
 class HBNBCommand(cmd.Cmd):
     """Defines HBnB command interpreter.
 
-    
     Attributes:
         prompt (str): command prompt.
     """
