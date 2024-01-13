@@ -22,14 +22,14 @@ def parse(arg):
             return [i.strip(",") for i in split(arg)]
         else:
             lexer = split(arg[:brackets.span()[0]])
-            rtl = [i.strip(",") for i in lexer]
-            rtl.append(brackets.group())
-            return rtl
+            retl = [i.strip(",") for i in lexer]
+            retl.append(brackets.group())
+            return retl
     else:
         lexer = split(arg[:curly_braces.span()[0]])
-        rtl = [i.strip(",") for i in lexer]
-        rtl.append(curly_braces.group())
-        return rtl
+        retl = [i.strip(",") for i in lexer]
+        retl.append(curly_braces.group())
+        return retl
 
 
 class HBNBCommand(cmd.Cmd):
