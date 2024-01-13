@@ -2,6 +2,9 @@
 """Defines HBnB console."""
 import cmd
 import re
+import sys
+import models
+import shlex
 from models.base_model import BaseModel
 from shlex import split
 from models.engine import file_storage
@@ -11,7 +14,6 @@ from models.city import City
 from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
-from models import storage
 
 
 def parse(arg):
