@@ -15,6 +15,7 @@ import unittest
 import sys
 import os
 from models.engine.file_storage import FileStorage
+from models import storage
 from io import StringIO
 from unittest.mock import patch
 from console import HBNBCommand
